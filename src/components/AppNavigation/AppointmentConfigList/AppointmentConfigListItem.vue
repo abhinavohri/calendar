@@ -57,7 +57,8 @@
 		</AppNavigationItem>
 		<AppointmentConfigModal
 			v-if="showModal"
-			:is-new="isCreatingNew"
+			:is-new="isDuplicate"
+			:is-duplicate="isDuplicate"
 			:config="config"
 			@close="closeModal" />
 	</div>
@@ -106,7 +107,7 @@ export default {
 		return {
 			showModal: false,
 			loading: false,
-			isCreatingNew: false,
+			isDuplicate: false,
 		}
 	},
 
@@ -119,15 +120,16 @@ export default {
 	methods: {
 		closeModal() {
 			this.showModal = false
+			this.isDuplicate = false
 		},
 
 		openEditModal() {
-			this.isCreatingNew = false
+			this.isDuplicate = false
 			this.showModal = true
 		},
 
 		duplicate() {
-			this.isCreatingNew = true
+			this.isDuplicate = true
 			this.showModal = true
 		},
 

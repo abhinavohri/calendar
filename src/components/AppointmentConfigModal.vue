@@ -199,6 +199,11 @@ export default {
 			type: Boolean,
 			required: true,
 		},
+
+		isDuplicate: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -225,7 +230,10 @@ export default {
 				return this.$t('calendar', 'Appointment schedule saved')
 			}
 			if (this.isNew) {
-				return this.$t('calendar', 'Create appointment schedule')
+				const title = this.isDuplicate
+					? 'Create appointment schedule (duplicate)'
+					: 'Create appointment schedule'
+				return this.$t('calendar', title)
 			}
 
 			return this.$t('calendar', 'Edit appointment schedule')
